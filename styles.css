@@ -7,6 +7,81 @@
      - Fraunces serif display + Inter sans body
    ============================================================= */
 
+/* ----------- Self-hosted fonts (no Google Fonts dependency) ----------- */
+/* Fraunces — optical-size aware display serif */
+@font-face {
+    font-family: "Fraunces";
+    src: url("/fonts/fraunces-v38-latin-300.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Fraunces";
+    src: url("/fonts/fraunces-v38-latin-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Fraunces";
+    src: url("/fonts/fraunces-v38-latin-500.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Fraunces";
+    src: url("/fonts/fraunces-v38-latin-600.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Fraunces";
+    src: url("/fonts/fraunces-v38-latin-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter — clean geometric sans for UI and body copy */
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-v20-latin-300.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-v20-latin-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-v20-latin-500.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-v20-latin-600.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-v20-latin-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     /* Brand */
     --brand-500: #7A3DC4;

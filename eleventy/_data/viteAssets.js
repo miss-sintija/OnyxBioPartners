@@ -12,11 +12,11 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(here, '../..');
 const manifestPath = path.join(projectRoot, 'dist', '.vite', 'manifest.json');
 
+// Fonts are now self-hosted via @font-face in styles.css — no external
+// Google Fonts URL needed here.
 const FALLBACK = {
     css: '/styles.css',
-    js: '/script.js',
-    fontsHref:
-        'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap'
+    js: '/script.js'
 };
 
 export default async function viteAssets() {
