@@ -21,9 +21,8 @@ The next era of productivity isn't about more apps; it's about better context. C
 
     Automating the "next step" in a workflow based on historical patterns and real-time data.
 
-   ![](/uploads/pexels-drugwatcher-9562136.jpg)
-
-### Why It Matters
+### \
+Why It Matters
 
 In a world of information overload, the most valuable tool is a filter. Contextual systems act as that filter, surfacing only what is relevant and suppressing the noise. This shift moves the computer from a reactive tool to a proactive partner.
 
