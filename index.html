@@ -439,19 +439,20 @@
 
     <script type="module" src="./script.js"></script>
 
-    <!-- Netlify Identity widget for Decap CMS auth flow.
-         Redirects users back to /admin/ after they confirm an invite. -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!--
+        Netlify Identity token redirect.
+        Invite / confirmation / recovery emails link here by default
+        (e.g. /#invite_token=...). This micro-script catches those tokens
+        and bounces the visitor to /admin/ where Decap CMS handles them.
+        No Identity widget loaded — ~500 bytes instead of 54 KB.
+    -->
     <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", function (user) {
-                if (!user) {
-                    window.netlifyIdentity.on("login", function () {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
+        (function () {
+            var h = window.location.hash;
+            if (/(invite_token|confirmation_token|recovery_token|email_change_token)=/.test(h)) {
+                window.location.replace('/admin/' + h);
+            }
+        }());
     </script>
 </body>
 </html>

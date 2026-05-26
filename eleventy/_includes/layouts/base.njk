@@ -24,6 +24,13 @@
     {% include "partials/footer.njk" %}
 
     <script type="module" src="{{ viteAssets.js }}"></script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+        (function () {
+            var h = window.location.hash;
+            if (/(invite_token|confirmation_token|recovery_token|email_change_token)=/.test(h)) {
+                window.location.replace('/admin/' + h);
+            }
+        }());
+    </script>
 </body>
 </html>
