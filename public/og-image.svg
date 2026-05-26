@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Onyx BioPartners. Science from concept to market.">
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0B0712"/>
+            <stop offset="55%" stop-color="#1A0F30"/>
+            <stop offset="100%" stop-color="#3F1E6B"/>
+        </linearGradient>
+        <radialGradient id="orb1" cx="0.15" cy="0.25" r="0.55">
+            <stop offset="0%" stop-color="#A56BE8" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#A56BE8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="orb2" cx="0.85" cy="0.85" r="0.55">
+            <stop offset="0%" stop-color="#E85BC9" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#E85BC9" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="helix" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#C8A5F3"/>
+            <stop offset="55%" stop-color="#A56BE8"/>
+            <stop offset="100%" stop-color="#E85BC9"/>
+        </linearGradient>
+        <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="60%" stop-color="#C8A5F3"/>
+            <stop offset="100%" stop-color="#E85BC9"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1200" height="630" fill="url(#bg)"/>
+    <rect width="1200" height="630" fill="url(#orb1)"/>
+    <rect width="1200" height="630" fill="url(#orb2)"/>
+
+    <g opacity="0.18" stroke="#C8A5F3" stroke-width="1.5" fill="none" stroke-linecap="round">
+        <path d="M860 30 Q 1000 200 860 370 Q 720 540 860 700"/>
+        <path d="M1000 30 Q 1140 200 1000 370 Q 860 540 1000 700"/>
+        <path d="M1140 30 Q 1280 200 1140 370 Q 1000 540 1140 700"/>
+        <line x1="860" y1="120" x2="1000" y2="120"/>
+        <line x1="1000" y1="240" x2="1140" y2="240"/>
+        <line x1="860" y1="360" x2="1000" y2="360"/>
+        <line x1="1000" y1="480" x2="1140" y2="480"/>
+    </g>
+
+    <g transform="translate(80, 120)">
+        <rect x="0" y="0" width="72" height="72" rx="14" fill="rgba(165,107,232,0.18)" stroke="rgba(200,165,243,0.4)" stroke-width="1"/>
+        <g transform="translate(12, 12)" stroke="url(#helix)" stroke-width="3.4" stroke-linecap="round" fill="none">
+            <path d="M9 4c0 12 30 14 30 24s-30 12-30 24"/>
+            <path d="M39 4c0 12-30 14-30 24s30 12 30 24"/>
+        </g>
+    </g>
+
+    <text x="172" y="172" font-family="Fraunces, 'Times New Roman', serif" font-size="32" font-weight="500" fill="#FFFFFF" letter-spacing="-0.5">Onyx BioPartners</text>
+
+    <text x="80" y="320" font-family="Fraunces, 'Times New Roman', serif" font-size="78" font-weight="400" fill="#FFFFFF" letter-spacing="-2">Science from</text>
+    <text x="80" y="410" font-family="Fraunces, 'Times New Roman', serif" font-size="78" font-weight="400" fill="url(#title)" letter-spacing="-2">concept to market.</text>
+
+    <text x="80" y="490" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="400" fill="#C8A5F3" letter-spacing="0">Evidence-driven strategy across the EU and GCC.</text>
+
+    <g transform="translate(80, 540)">
+        <rect x="0" y="0" width="10" height="10" rx="5" fill="#E85BC9"/>
+        <text x="22" y="9" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.75)" letter-spacing="3">ONYXBIOPARTNERS.COM</text>
+    </g>
+</svg>

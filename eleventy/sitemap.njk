@@ -1,0 +1,44 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {# Homepage. Vite owns the file but the URL is still ours to advertise. #}
+    <url>
+        <loc>{{ site.url }}/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    {# Legal pages — low priority, but indexed for transparency. #}
+    <url>
+        <loc>{{ site.url }}/privacy/</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>{{ site.url }}/legal/</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    {# Journal index. #}
+    <url>
+        <loc>{{ site.url }}/blog/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    {# Every journal post. #}
+    {%- for post in collections.posts -%}
+        {%- if not post.data.noindex %}
+    <url>
+        <loc>{{ site.url }}{{ post.url }}</loc>
+        <lastmod>{{ post.date | isoDate }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+        {%- endif -%}
+    {%- endfor %}
+</urlset>

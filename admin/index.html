@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onyx BioPartners | Content Studio</title>
+    <link rel="icon" href="/uploads/journal-welcome.svg" type="image/svg+xml" />
+</head>
+<body>
+    <!-- Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <!--
+        Register the same Google Fonts and the live site stylesheet inside
+        the preview iframe, plus a small overrides file. This makes the
+        editor preview look like the deployed post page.
+    -->
+    <script>
+        (function () {
+            if (!window.CMS) return;
+
+            CMS.registerPreviewStyle(
+                'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap'
+            );
+            CMS.registerPreviewStyle('/styles.css');
+            CMS.registerPreviewStyle('/admin/preview.css');
+
+            var h = window.h;
+            var createClass = window.createClass;
+
+            function formatDate(value) {
+                if (!value) return '';
+                var d = value instanceof Date ? value : new Date(value);
+                if (isNaN(d.getTime())) return '';
+                return d.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+
+            var PostPreview = createClass({
+                render: function () {
+                    var entry = this.props.entry;
+                    var data = entry.get('data');
+                    var title = data.get('title') || 'Untitled post';
+                    var excerpt = data.get('excerpt');
+                    var date = data.get('date');
+                    var featured = data.get('featured_image');
+                    var assetProxy = featured
+                        ? this.props.getAsset(featured)
+                        : null;
+                    var featuredUrl = assetProxy
+                        ? assetProxy.toString()
+                        : null;
+
+                    return h(
+                        'article',
+                        { className: 'post' },
+                        featuredUrl
+                            ? h('div', {
+                                  className: 'post__hero',
+                                  style: {
+                                      backgroundImage:
+                                          'linear-gradient(180deg, rgba(11,7,18,0.0) 60%, rgba(11,7,18,0.55) 100%), url(' +
+                                          featuredUrl +
+                                          ')'
+                                  }
+                              })
+                            : h('div', {
+                                  className: 'post__hero post__hero--blank'
+                              }),
+                        h(
+                            'div',
+                            { className: 'container post__container' },
+                            h(
+                                'header',
+                                { className: 'post__header' },
+                                h(
+                                    'p',
+                                    { className: 'post__date' },
+                                    formatDate(date)
+                                ),
+                                h(
+                                    'h1',
+                                    { className: 'post__title' },
+                                    title
+                                ),
+                                excerpt
+                                    ? h(
+                                          'p',
+                                          { className: 'post__lede' },
+                                          excerpt
+                                      )
+                                    : null
+                            ),
+                            h(
+                                'div',
+                                { className: 'prose' },
+                                this.props.widgetFor('body')
+                            )
+                        )
+                    );
+                }
+            });
+
+            CMS.registerPreviewTemplate('posts', PostPreview);
+        })();
+    </script>
+</body>
+</html>

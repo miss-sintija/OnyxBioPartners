@@ -1,0 +1,83 @@
+backend:
+    name: git-gateway
+    branch: main
+    commit_messages:
+        create: 'Create {{collection}} "{{slug}}"'
+        update: 'Update {{collection}} "{{slug}}"'
+        delete: 'Delete {{collection}} "{{slug}}"'
+        uploadMedia: 'Upload "{{path}}"'
+        deleteMedia: 'Delete "{{path}}"'
+
+# Where Decap stores uploaded images in the repo, and the URL prefix the
+# frontend uses to load them. public/ is Vite's static dir, so files saved
+# under public/uploads/ are copied to dist/uploads/ during the build.
+media_folder: public/uploads
+public_folder: /uploads
+
+publish_mode: editorial_workflow
+
+site_url: https://www.onyx-biopartners.com
+display_url: https://www.onyx-biopartners.com
+logo_url: /uploads/journal-welcome.svg
+
+collections:
+    - name: posts
+      label: Journal posts
+      label_singular: Post
+      folder: posts
+      create: true
+      slug: '{{slug}}'
+      preview_path: 'blog/{{slug}}'
+      summary: '{{title}} — {{date | date("YYYY-MM-DD")}}'
+      sortable_fields: ['date', 'title']
+      fields:
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - {
+                label: 'Publish date',
+                name: 'date',
+                widget: 'datetime',
+                date_format: 'YYYY-MM-DD',
+                time_format: false,
+                picker_utc: false
+            }
+          - {
+                label: 'Excerpt',
+                name: 'excerpt',
+                widget: 'text',
+                required: false,
+                hint: 'Shown on the journal index card and as the lede on the post page. Keep it under ~200 characters.'
+            }
+          - {
+                label: 'Featured image',
+                name: 'featured_image',
+                widget: 'image',
+                required: false,
+                hint: 'Optional. Shown as the hero on the post page and as the card image on the journal index.'
+            }
+          - {
+                label: 'Featured image alt text',
+                name: 'featured_image_alt',
+                widget: 'string',
+                required: false,
+                hint: 'Describe the image for screen readers and search engines. Leave blank to fall back to the post title.'
+            }
+          - {
+                label: 'Body',
+                name: 'body',
+                widget: 'markdown',
+                hint: 'Use headings, lists, links, and inline images. Keep paragraphs short.'
+            }
+          - {
+                label: 'SEO — Page title',
+                name: 'seo_title',
+                widget: 'string',
+                required: false,
+                hint: 'Optional override for the browser tab and Google search result. Leave blank to use the post title.'
+            }
+          - {
+                label: 'SEO — Meta description',
+                name: 'seo_description',
+                widget: 'text',
+                required: false,
+                hint: 'Optional override for the Google search snippet and social share description. Leave blank to use the excerpt. Keep under 160 characters.'
+            }

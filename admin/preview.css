@@ -1,0 +1,35 @@
+/*
+ * Decap CMS preview overrides. Loaded into the preview iframe via
+ * CMS.registerPreviewStyle(). The iframe also loads /styles.css, so
+ * everything here is purely a tweak on top of the live site styles.
+ */
+
+/* Hide the homepage's fixed background flourishes — they don't render
+   meaningfully inside the small preview iframe. */
+.bg-orb,
+.bg-grid {
+    display: none !important;
+}
+
+/* Give the preview some breathing room and ensure the ivory body bg. */
+html,
+body {
+    background: var(--ivory-50) !important;
+    overflow-x: hidden;
+}
+
+body {
+    padding-bottom: 80px;
+}
+
+/* The preview iframe is narrower than a real viewport, so keep the
+   container readable. */
+.post__container {
+    max-width: 760px;
+}
+
+.post__hero {
+    height: clamp(180px, 30vw, 280px);
+    background-size: cover;
+    background-position: center;
+}

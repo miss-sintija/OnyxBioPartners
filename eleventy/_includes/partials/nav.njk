@@ -1,0 +1,32 @@
+<header class="nav" id="nav">
+    <div class="nav__inner container">
+        <a href="/" class="brand" aria-label="Onyx BioPartners home">
+            <svg class="brand__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <defs>
+                    <linearGradient id="helixGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#A56BE8"/>
+                        <stop offset="100%" stop-color="#5B2C91"/>
+                    </linearGradient>
+                </defs>
+                <path d="M14 6c0 8 20 10 20 18s-20 10-20 18" stroke="url(#helixGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M34 6c0 8-20 10-20 18s20 10 20 18" stroke="url(#helixGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M16 12h16M15 18h18M15 30h18M16 36h16" stroke="url(#helixGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+            </svg>
+            <span class="brand__name">Onyx <strong>BioPartners</strong></span>
+        </a>
+
+        <nav class="nav__links" aria-label="Primary">
+            <a href="/#about">Company</a>
+            <a href="/#services">Services</a>
+            <a href="/#approach">Approach</a>
+            <a href="/blog/"{% if isJournal %} aria-current="page"{% endif %}>Journal</a>
+            <a href="/#contact">Contact</a>
+        </nav>
+
+        <a href="/#contact" class="btn btn--pill nav__cta">Book a call<span aria-hidden="true">→</span></a>
+
+        <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>

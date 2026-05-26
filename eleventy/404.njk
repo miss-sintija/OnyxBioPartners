@@ -1,0 +1,30 @@
+---
+title: Page not found
+seo_title: Page not found
+description: The page you're looking for doesn't exist. Find your way back to the homepage or browse the journal.
+permalink: /404.html
+layout: layouts/base.njk
+noindex: true
+eleventyExcludeFromCollections: true
+bodyClass: page--404
+---
+<section class="section not-found">
+    <div class="container not-found__inner">
+        <p class="eyebrow">Error 404</p>
+        <p class="not-found__code" aria-hidden="true">404</p>
+        <h1 class="section-title not-found__title">This page took a detour.</h1>
+        <p class="section-sub not-found__sub">
+            The link you followed may be outdated, or the page has moved.
+            Let's get you back on track.
+        </p>
+        <div class="not-found__actions">
+            <a class="btn btn--primary" href="/">Back to home</a>
+            <a class="btn btn--ghost-light" href="/blog/">Read the journal</a>
+        </div>
+        <p class="not-found__contact">
+            Still stuck? Email
+            <a href="mailto:info@onyx-biopartners.com">info@onyx-biopartners.com</a>
+            and we'll point you the right way.
+        </p>
+    </div>
+</section>

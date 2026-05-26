@@ -1,0 +1,90 @@
+{# ----------------------------------------------------------------------
+   JSON-LD structured data partial. Included from base.njk for every
+   Eleventy-rendered page.
+
+   What gets emitted:
+     - Organization: always
+     - BreadcrumbList: on the journal index and on individual posts
+     - Article: on individual posts only
+
+   The homepage (index.html) is built by Vite, not Eleventy, so its
+   Organization + WebSite JSON-LD lives inline in index.html.
+
+   The `| dump | safe` pattern produces valid JSON for any string —
+   apostrophes, quotes, unicode all get escaped correctly by Nunjucks.
+---------------------------------------------------------------------- #}
+
+{%- set _isPost = page.url.startsWith('/blog/') and page.url != '/blog/' -%}
+{%- set _isJournalIndex = page.url == '/blog/' -%}
+{%- set _orgId = site.url + '/#organization' -%}
+{%- set _absUrl = site.url + page.url -%}
+
+{#
+   Organization
+   Note: keep the @id stable so Google can merge references to the
+   same entity across pages.
+#}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": {{ _orgId | dump | safe }},
+    "name": {{ site.name | dump | safe }},
+    "legalName": {{ (site.organization.legalName or site.name) | dump | safe }},
+    "url": {{ site.url | dump | safe }},
+    "logo": {{ (site.url + site.organization.logo) | dump | safe }},
+    "email": {{ site.organization.email | dump | safe }},
+    "description": {{ site.description | dump | safe }},
+    "areaServed": {{ site.organization.regions | dump | safe }}{% if site.organization.sameAs and site.organization.sameAs.length %},
+    "sameAs": {{ site.organization.sameAs | dump | safe }}{% endif %}
+}
+</script>
+
+{%- if _isJournalIndex %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ (site.url + '/') | dump | safe }} },
+        { "@type": "ListItem", "position": 2, "name": "Journal", "item": {{ _absUrl | dump | safe }} }
+    ]
+}
+</script>
+{%- endif %}
+
+{%- if _isPost %}
+{%- set _articleImage = featured_image or site.defaultOgImage -%}
+{%- set _articleImageAbs -%}
+    {%- if _articleImage.startsWith('http') -%}{{ _articleImage }}{%- else -%}{{ site.url }}{{ _articleImage }}{%- endif -%}
+{%- endset -%}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ _absUrl | dump | safe }}
+    },
+    "headline": {{ title | dump | safe }},
+    "description": {{ (excerpt or description or site.description) | dump | safe }},
+    "image": [{{ _articleImageAbs | dump | safe }}],
+    "datePublished": {{ (page.date | isoDate) | dump | safe }},
+    "dateModified": {{ (page.date | isoDate) | dump | safe }},
+    "author": { "@id": {{ _orgId | dump | safe }} },
+    "publisher": { "@id": {{ _orgId | dump | safe }} },
+    "inLanguage": {{ site.language | dump | safe }}
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ (site.url + '/') | dump | safe }} },
+        { "@type": "ListItem", "position": 2, "name": "Journal", "item": {{ (site.url + '/blog/') | dump | safe }} },
+        { "@type": "ListItem", "position": 3, "name": {{ title | dump | safe }}, "item": {{ _absUrl | dump | safe }} }
+    ]
+}
+</script>
+{%- endif %}
