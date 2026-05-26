@@ -20,9 +20,12 @@ export default {
     locale: 'en_US',
     language: 'en',
     themeColor: '#0B0712',
-    // 1200x630 share card used as the default OG / Twitter image for any
-    // page that doesn't specify its own.
-    defaultOgImage: '/og-image.svg',
+    // 1200x630 share card used as the default OG / Twitter image for
+    // any page that doesn't specify its own. PNG (not SVG) because
+    // LinkedIn, X, iMessage, and Slack render PNG reliably and SVG
+    // inconsistently. Regenerate via `npm run icons` whenever the
+    // source og-image.svg changes.
+    defaultOgImage: '/og-image.png',
     defaultOgImageAlt: 'Onyx BioPartners — Science from concept to market.',
     favicon: '/favicon.svg',
     twitterHandle: '', // e.g. '@onyxbiopartners' once a profile exists

@@ -56,6 +56,6 @@
 
     <g transform="translate(80, 540)">
         <rect x="0" y="0" width="10" height="10" rx="5" fill="#E85BC9"/>
-        <text x="22" y="9" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.75)" letter-spacing="3">ONYXBIOPARTNERS.COM</text>
+        <text x="22" y="9" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.75)" letter-spacing="3">ONYX-BIOPARTNERS.COM</text>
     </g>
 </svg>

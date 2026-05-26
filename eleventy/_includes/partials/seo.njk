@@ -34,6 +34,14 @@
 <meta property="og:url" content="{{ _canonical }}" />
 <meta property="og:locale" content="{{ site.locale }}" />
 <meta property="og:image" content="{{ _ogImageAbs }}" />
+{# Default share image (og-image.png) is the 1200x630 PNG. Pages
+   that override featured_image keep their own implicit dimensions —
+   we only emit width/height when we know we're using the default. #}
+{%- if _ogImage == site.defaultOgImage %}
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
+{%- endif %}
 <meta property="og:image:alt" content="{{ _ogImageAlt }}" />
 {% if _ogType == 'article' and page.date %}
 <meta property="article:published_time" content="{{ page.date | isoDate }}" />

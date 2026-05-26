@@ -1,10 +1,10 @@
 /**
- * Rasterizes public/favicon.svg into the PNGs the modern web (and
- * structured-data crawlers) actually use. Run with `npm run icons`.
+ * Rasterizes the SVG brand assets into the PNGs the modern web (and
+ * social platforms / crawlers) actually use. Run with `npm run icons`.
  *
- * The generated files are committed to git so Netlify never needs to
- * install sharp during a build. Re-run this script whenever the source
- * SVG changes.
+ * Generated files are committed to git so Netlify never needs to
+ * install sharp during a build. Re-run this script whenever any of
+ * the source SVGs change.
  *
  * Outputs (all dropped into public/, Vite passthrough-copies them):
  *
@@ -12,17 +12,18 @@
  *                                   Must be a square raster image with
  *                                   minimum 112x112 per Google's guidelines.
  *
- *   apple-touch-icon.png  180x180   iOS home-screen icon (already
- *                                   referenced in index.html and the
- *                                   Eleventy SEO partial).
+ *   apple-touch-icon.png  180x180   iOS home-screen icon.
  *
  *   favicon-32.png        32x32     Browser fallback for tabs that don't
- *                                   accept SVG favicons (older Safari,
- *                                   some Android Chrome contexts).
+ *                                   accept SVG favicons.
  *
  *   favicon-16.png        16x16     Same, smaller tab/bookmark size.
  *
- * We density-render the SVG at the requested output size so gradient
+ *   og-image.png          1200x630  Open Graph / Twitter share card.
+ *                                   PNG (not SVG) for reliable rendering
+ *                                   on LinkedIn, X, iMessage, Slack, etc.
+ *
+ * We density-render each SVG at the requested output size so gradient
  * banding and stroke aliasing stay tight at every scale.
  */
 import { readFile } from 'node:fs/promises';
@@ -30,28 +31,39 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const ROOT = process.cwd();
-const SRC = path.join(ROOT, 'public', 'favicon.svg');
 const OUT_DIR = path.join(ROOT, 'public');
 
-const TARGETS = [
-    { name: 'logo.png', size: 512 },
-    { name: 'apple-touch-icon.png', size: 180 },
-    { name: 'favicon-32.png', size: 32 },
-    { name: 'favicon-16.png', size: 16 }
+// Each job: src SVG file, output PNG name, target pixel size, and the
+// SVG's intrinsic viewBox length on its largest axis (used to compute
+// the right `density` so librsvg renders crisply at the target size).
+const JOBS = [
+    { src: 'favicon.svg',   out: 'logo.png',             width: 512,  height: 512, svgAxis: 48 },
+    { src: 'favicon.svg',   out: 'apple-touch-icon.png', width: 180,  height: 180, svgAxis: 48 },
+    { src: 'favicon.svg',   out: 'favicon-32.png',       width: 32,   height: 32,  svgAxis: 48 },
+    { src: 'favicon.svg',   out: 'favicon-16.png',       width: 16,   height: 16,  svgAxis: 48 },
+    { src: 'og-image.svg',  out: 'og-image.png',         width: 1200, height: 630, svgAxis: 1200 }
 ];
 
-const svgBuffer = await readFile(SRC);
+for (const { src, out, width, height, svgAxis } of JOBS) {
+    const srcPath = path.join(OUT_DIR, src);
+    const outPath = path.join(OUT_DIR, out);
+    const svgBuffer = await readFile(srcPath);
 
-for (const { name, size } of TARGETS) {
-    const out = path.join(OUT_DIR, name);
-    // `density` controls how sharp tells librsvg to rasterize. We aim
-    // for ~size-pixel resolution rather than upscaling later.
-    const density = Math.max(72, Math.round((size / 48) * 72));
+    // `density` (DPI) tells librsvg how to scale the vector during
+    // rasterization. We aim for the target pixel size directly so we
+    // never upscale a small render after the fact.
+    const longestSide = Math.max(width, height);
+    const density = Math.max(72, Math.round((longestSide / svgAxis) * 72));
+
     await sharp(svgBuffer, { density })
-        .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+        .resize(width, height, {
+            fit: 'contain',
+            background: { r: 0, g: 0, b: 0, alpha: 0 }
+        })
         .png({ compressionLevel: 9 })
-        .toFile(out);
-    console.log(`  ${path.relative(ROOT, out)} (${size}x${size})`);
+        .toFile(outPath);
+
+    console.log(`  ${path.relative(ROOT, outPath)} (${width}x${height}, from ${src})`);
 }
 
-console.log(`\n${TARGETS.length} icons generated from ${path.relative(ROOT, SRC)}.`);
+console.log(`\n${JOBS.length} assets generated.`);
