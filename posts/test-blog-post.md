@@ -21,7 +21,7 @@ The next era of productivity isn't about more apps; it's about better context. C
 
     Automating the "next step" in a workflow based on historical patterns and real-time data.
 
-   ![](/uploads/screencapture-law-sphere-template-framer-website-2026-03-23-23_32_46.png)
+   ![](/uploads/journal-welcome.svg)
 
 ### Why It Matters
 
