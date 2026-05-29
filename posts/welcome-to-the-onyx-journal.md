@@ -1,10 +1,10 @@
 ---
-title: "Welcome to the Onyx Journal"
+title: Welcome to the Onyx Journal
 date: 2026-05-15
-excerpt: "A short note on why we're starting a journal, and what you can expect to read here over the coming months."
+excerpt: A short note on why we're starting a journal, and what you can expect
+  to read here over the coming months.
 featured_image: /uploads/journal-welcome.svg
 ---
-
 We've spent the last several years sitting in regulatory pre-submission meetings, advising founders on capital strategy, and helping commercial teams translate clinical evidence into market-access narratives. Most of what we've learned never gets written down.
 
 This is where we plan to change that.
@@ -19,10 +19,10 @@ We don't believe the answer is more whitepapers. The answer is concrete, specifi
 
 The Journal will rotate across a few themes:
 
-- **Regulatory strategy.** EMA scientific advice, GCC harmonization, and the pre-submission decisions that quietly determine your timeline.
-- **Clinical development.** Trial design choices that pay off two years later, and the ones that don't.
-- **Market access and pricing.** Reimbursement frameworks for the EU and GCC, and what payer logic actually rewards.
-- **Capital and operations.** What investors look for at each stage, and how to build an organization that can actually execute the plan.
+* **Regulatory strategy.** EMA scientific advice, GCC harmonization, and the pre-submission decisions that quietly determine your timeline.
+* **Clinical development.** Trial design choices that pay off two years later, and the ones that don't.
+* **Market access and pricing.** Reimbursement frameworks for the EU and GCC, and what payer logic actually rewards.
+* **Capital and operations.** What investors look for at each stage, and how to build an organization that can actually execute the plan.
 
 ## How to read this
 
