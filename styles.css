@@ -1340,3 +1340,87 @@ body.page--404 .nav {
     .not-found__actions { flex-direction: column; align-items: stretch; }
     .not-found__actions .btn { justify-content: center; }
 }
+
+/* ===== Engagements CTA band ===== */
+.engage-cta {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 40px 48px;
+    background: linear-gradient(135deg, var(--ink-900), var(--ink-800));
+    border: 1px solid var(--brand-700);
+    border-radius: var(--radius-lg);
+}
+.engage-cta__text h3 {
+    font-family: var(--font-display, inherit);
+    font-size: 1.5rem;
+    color: var(--ivory-50);
+    margin-bottom: 8px;
+}
+.engage-cta__text p {
+    color: var(--ivory-200);
+    max-width: 56ch;
+}
+.engage-cta .btn { flex-shrink: 0; }
+@media (max-width: 720px) {
+    .engage-cta { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+}
+
+/* ===== Whitepaper modal ===== */
+.wp-modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.wp-modal[hidden] { display: none; }
+.wp-modal__backdrop { position: absolute; inset: 0; background: rgba(11, 7, 18, .72); backdrop-filter: blur(4px); animation: wpFade .3s ease; }
+.wp-modal__panel {
+    position: relative; width: min(520px, 100%); max-height: 90vh; overflow-y: auto;
+    background: linear-gradient(160deg, var(--ink-900), var(--ink-800));
+    border: 1px solid var(--brand-600); border-radius: var(--radius-lg);
+    padding: 40px 40px 32px; animation: wpRise .35s cubic-bezier(.2,.7,.3,1);
+}
+.wp-modal__panel h2 { font-family: var(--font-serif); font-size: 1.65rem; line-height: 1.2; color: var(--ivory-50); margin: 6px 0 12px; }
+.wp-modal__sub { color: var(--ivory-200); font-size: .95rem; margin-bottom: 24px; }
+.wp-modal__close { position: absolute; top: 14px; right: 18px; background: none; border: 0; color: var(--ivory-200); font-size: 1.8rem; line-height: 1; cursor: pointer; opacity: .7; }
+.wp-modal__close:hover { opacity: 1; }
+.wp-field { display: block; margin-bottom: 14px; }
+.wp-field span { display: block; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--brand-200); margin-bottom: 6px; }
+.wp-field input {
+    width: 100%; padding: 12px 14px; border-radius: 10px;
+    border: 1px solid var(--brand-700); background: rgba(255,255,255,.04);
+    color: var(--ivory-50); font-family: var(--font-sans); font-size: .95rem;
+}
+.wp-field input:focus { outline: none; border-color: var(--brand-300); box-shadow: 0 0 0 3px rgba(165,107,232,.18); }
+.wp-consent { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 20px; font-size: .82rem; color: var(--ivory-200); }
+.wp-consent input { margin-top: 3px; accent-color: var(--brand-500); }
+.wp-consent a { color: var(--brand-200); }
+.wp-submit { width: 100%; justify-content: center; }
+.wp-note { font-size: .75rem; color: var(--text-soft); margin-top: 12px; text-align: center; }
+.wp-success { color: var(--ivory-100); font-size: .95rem; }
+.wp-hp { position: absolute; left: -9999px; }
+@keyframes wpFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes wpRise { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
+@media (max-width: 520px) { .wp-modal__panel { padding: 32px 24px 24px; } }
+
+/* ===== Whitepaper modal: guide choice ===== */
+.wp-choice { border: 0; padding: 0; margin: 0 0 20px; }
+.wp-choice legend {
+    font-size: .78rem; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--brand-200); margin-bottom: 10px; padding: 0;
+}
+.wp-choice__opt {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 14px; margin-bottom: 8px;
+    border: 1px solid var(--brand-700); border-radius: 12px;
+    background: rgba(255,255,255,.03); cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+}
+.wp-choice__opt:hover { border-color: var(--brand-500); background: rgba(255,255,255,.06); }
+.wp-choice__opt input { margin-top: 4px; accent-color: var(--brand-500); flex-shrink: 0; }
+.wp-choice__opt:has(input:checked) {
+    border-color: var(--brand-300);
+    background: rgba(165,107,232,.12);
+}
+.wp-choice__opt input:focus-visible { outline: 2px solid var(--brand-300); outline-offset: 2px; }
+.wp-choice__body { display: flex; flex-direction: column; gap: 2px; }
+.wp-choice__body strong { color: var(--ivory-50); font-size: .95rem; font-weight: 600; }
+.wp-choice__body small { color: var(--text-soft); font-size: .78rem; line-height: 1.4; }
